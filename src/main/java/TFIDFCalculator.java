@@ -1,6 +1,12 @@
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Borrowed from:
+ * @author Mohamed Guendouz
+ * so I don't have to do the math myself
+ */
+
 public class TFIDFCalculator {
     /**
      * @param doc  list of strings
@@ -55,8 +61,6 @@ public class TFIDFCalculator {
         TFIDFCalculator calculator = new TFIDFCalculator();
         double tfidf = calculator.tfIdf(doc2, documents, "ipsum");
         System.out.println("TF-IDF (ipsum) = " + tfidf);
-
-
     }
 
 

@@ -7,9 +7,12 @@ import java.util.stream.Collectors;
 public class SearchIndexer {
 
     public Map<Double, String> sortDocuments(List<List<String>> documents, String searchQuery) {
+        TFIDFCalculator calculator = new TFIDFCalculator();
         Map<Double, String> documentsWithValues = new TreeMap<>(Collections.reverseOrder());
 
-        documents.forEach(document -> documentsWithValues.put(new TFIDFCalculator().tfIdf(document, documents, searchQuery), detokenizeDocument(document)));
+        documents.stream()
+                .filter(document -> calculator.tf(document, searchQuery) != 0)
+                .forEach(document -> documentsWithValues.put(calculator.tfIdf(document, documents, searchQuery), detokenizeDocument(document)));
 
         return documentsWithValues;
     }
